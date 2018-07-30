@@ -35,27 +35,29 @@ class PhotoController extends Controller
      */
     public function store(Request $request)
     {
-        // request()->file('avatar')->store('pdf');
-        // $file = request()->file('avatar');
-        // $ext = $file->extension();
-        // $name = rand(11111,99999).'.'.$ext;
-        // $path = $file->storeAs('avatars', $name);
-        // return $path;
-        if ($request->file('avatar')->isValid()){
-
-              $imagePath = $request->file('avatar')->store('public');
-              $image = Image::make(Storage::get($imagePath))->resize(320,240)->encode();
-              Storage::put($imagePath,$image);
-
-              $imagePath = explode('/',$imagePath);
-
-              $imagePath = $imagePath[1];
-
-              $myTheory->image = $imagePath;
-
-              }
-
-              $myTheory->save();
+        request()->file('avatar')->store('pdf');
+        $file = request()->file('avatar');
+        $ext = $file->extension();
+        $name = rand(11111,99999).'.'.$ext;
+        $path = $file->storeAs('avatars', $name);
+        $contents = \Storage::get('avatars/36610.jpeg');
+        return $contents;
+        return $path;
+        // if ($request->file('avatar')->isValid()){
+        //
+        //       $imagePath = $request->file('avatar')->store('public');
+        //       $image = Image::make(Storage::get($imagePath))->resize(320,240)->encode();
+        //       Storage::put($imagePath,$image);
+        //
+        //       $imagePath = explode('/',$imagePath);
+        //
+        //       $imagePath = $imagePath[1];
+        //
+        //       $myTheory->image = $imagePath;
+        //
+        //       }
+        //
+        //       $myTheory->save();
 
     }
 
